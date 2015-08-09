@@ -12,7 +12,16 @@ end
 
 if __FILE__ == $PROGRAM_NAME
   seconds = 979_000_000
-  puts "If you are #{seconds} seconds old, then you are "
-  print format("%.2f", age_in_years(seconds))
-  puts " seconds old."
+  formatting = '%s %i %s %.2f %s'
+  first_part = "If you have "
+  last_part =  "seconds then you are"
+  really_last_part = 'years old'
+  puts format(
+    formatting,
+    first_part,
+    seconds,
+    last_part,
+    age_in_years(seconds),
+    really_last_part
+  )
 end
