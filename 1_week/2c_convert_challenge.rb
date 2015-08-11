@@ -1,48 +1,59 @@
-# doctest: convert should give correct results
-# >> conversion_to_make = 1
-# >> value = 0
-# >> convert_temperature(conversion_to_make, value)
-# => "32.0 degrees."
-# >> conversion_to_make = 2
-# >> value = 32
-# >> convert_temperature(conversion_to_make, value)
-# => "0.0 degrees."
-# >> conversion_to_make = 3
-# >> value = 0
-# >> convert_temperature(conversion_to_make, value)
-# => "273.15 degrees."
-# >> conversion_to_make = 4
-# >> value = 273.15
-# >> convert_temperature(conversion_to_make, value)
-# => "0.0 degrees."
-# >> conversion_to_make = 5
-# >> value = 32
-# >> convert_temperature(conversion_to_make, value)
-# => "0.0 degrees."
+# doctest: c to f should give correct results
+# >> a = ConvertTemperature.new(1, 0)
+# >> a.celcius_to_fahrenheit(0)
+# => 32.0
+# doctest: f to c should give correct result
+# >> b = ConvertTemperature.new(2, 0)
+# >> b.fahrenheit_to_celcius(32)
+# => 0.0
+# doctest: c to k should give correct result
+# >> c = ConvertTemperature.new(3, 0)
+# >> c.celcius_to_kelvin
+# => 273.15
+# doctest: f to k should give correct result
+# >> d = ConvertTemperature.new(4, 32)
+# >> d.fahrenheit_to_kelvin(32)
+# => 273.15
+# doctest: k to c should give correct result
+# >> e = ConvertTemperature.new(5, 273.15)
+# >> e.kelvin_to_celcius
+# => 0
+# doctest: k to f should give correct result
+# >> f = ConvertTemperature.new(6, 273.15)
+# >> f.kelvin_to_fahrenheit(273.15)
+# => 32
 
 
-def convert_temperature(conversion_to_make, value)
-  exit if value.is_a?(Numeric) == false
-  exit if conversion_to_make.is_a?(Integer) == false
-
-  case conversion_to_make
-  when 1 # Celcius to Fahrenheit
-    converted_value = value * 5/9.to_f + 32
-  when 2 # Fahrenheit to Celcius
-    converted_value = (value - 32) * (5 / 9.to_f)
-    f_to_c = converted_value
-  when 3 # Celcius to Kelvin
-    converted_value = value + 273.15
-  when 4 # Kelvin to Celcius
-    converted_value = value - 273.15
-  when 5 # Fahrenheit to Kelvin 
-    converted_value = value - 273.15
-  else
-    puts "Sorry please try entering a valid selection."
-    exit
+class ConvertTemperature
+  def initialize(converion_to_make, value)
+    @value = value
   end
 
-  "#{converted_value} degrees." # refactor this later
+  def celcius_to_fahrenheit(value)
+    @value = value * 5 / 9.0 + 32
+  end
+
+  def fahrenheit_to_celcius(value)
+    @value = (value - 32) * (5 / 9.0)
+  end
+
+  def celcius_to_kelvin
+    @value += 273.15
+  end
+
+  def fahrenheit_to_kelvin(value)
+    fahrenheit_to_celcius(value)
+    celcius_to_kelvin
+  end
+
+  def kelvin_to_celcius
+    @value -= 273.15
+  end
+
+  def kelvin_to_fahrenheit(value)
+    kelvin_to_celcius
+    celcius_to_fahrenheit(@value)
+  end
 end
 
 # add library guard with only two floats:
