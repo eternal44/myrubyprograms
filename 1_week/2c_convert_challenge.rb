@@ -1,10 +1,10 @@
 # doctest: c to f should give correct results
 # >> a = ConvertTemperature.new(1, 0)
-# >> a.celcius_to_fahrenheit(0)
+# >> a.celcius_to_fahrenheit
 # => 32.0
 # doctest: f to c should give correct result
-# >> b = ConvertTemperature.new(2, 0)
-# >> b.fahrenheit_to_celcius(32)
+# >> b = ConvertTemperature.new(2, 32)
+# >> b.fahrenheit_to_celcius
 # => 0.0
 # doctest: c to k should give correct result
 # >> c = ConvertTemperature.new(3, 0)
@@ -12,7 +12,7 @@
 # => 273.15
 # doctest: f to k should give correct result
 # >> d = ConvertTemperature.new(4, 32)
-# >> d.fahrenheit_to_kelvin(32)
+# >> d.fahrenheit_to_kelvin
 # => 273.15
 # doctest: k to c should give correct result
 # >> e = ConvertTemperature.new(5, 273.15)
@@ -20,7 +20,7 @@
 # => 0
 # doctest: k to f should give correct result
 # >> f = ConvertTemperature.new(6, 273.15)
-# >> f.kelvin_to_fahrenheit(273.15)
+# >> f.kelvin_to_fahrenheit
 # => 32
 
 
@@ -29,20 +29,20 @@ class ConvertTemperature
     @value = value
   end
 
-  def celcius_to_fahrenheit(value)
-    @value = value * 5 / 9.0 + 32
+  def celcius_to_fahrenheit
+    @value * 5 / 9.0 + 32
   end
 
-  def fahrenheit_to_celcius(value)
-    @value = (value - 32) * (5 / 9.0)
+  def fahrenheit_to_celcius
+    @value = (@value - 32) * (5 / 9.0)
   end
 
   def celcius_to_kelvin
     @value += 273.15
   end
 
-  def fahrenheit_to_kelvin(value)
-    fahrenheit_to_celcius(value)
+  def fahrenheit_to_kelvin
+    fahrenheit_to_celcius
     celcius_to_kelvin
   end
 
@@ -50,9 +50,9 @@ class ConvertTemperature
     @value -= 273.15
   end
 
-  def kelvin_to_fahrenheit(value)
+  def kelvin_to_fahrenheit
     kelvin_to_celcius
-    celcius_to_fahrenheit(@value)
+    celcius_to_fahrenheit
   end
 end
 
