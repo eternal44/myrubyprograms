@@ -15,8 +15,7 @@ end
 
 if __FILE__ == $PROGRAM_NAME
   seconds = 979_000_000
-  formatting = '%<have>s %<seconds>i %<second_part>s\
-                %<converted>.2f %<really_last_part>s'
+  formatting = '%<have>s %<seconds>i %<second_part>s %<converted>.2f %<really_last_part>s'
   string_parts = {
     have: "If you have ",
     seconds: seconds,
@@ -24,8 +23,5 @@ if __FILE__ == $PROGRAM_NAME
     converted: age_in_years(seconds),
     really_last_part: "years old"
   }
-  puts format(
-              formatting,
-              string_parts
-             )
+  puts formatting % string_parts
 end
