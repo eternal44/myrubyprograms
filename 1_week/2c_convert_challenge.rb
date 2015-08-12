@@ -72,6 +72,7 @@ class ConvertTemperature
     # original_temperature is for stacked unit conversions (ex: k to f)
     original_temperature = @original_temperature #why doesn't this work?
     converted_temperature = @conversion_to_make
+    # change to sprintf format
     "#{original_temperature} degrees #{original_unit} | " \
     "#{converted_temperature} degrees #{converted_unit}"
   end
