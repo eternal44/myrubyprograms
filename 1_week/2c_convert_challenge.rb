@@ -35,7 +35,7 @@
 # >> f.kelvin_to_fahrenheit(273.15)
 # => 32
 
-
+# Description:  temperature conversion script
 class ConvertTemperature
   def initialize(conversion_to_make, value)
     @value = value
@@ -70,8 +70,6 @@ class ConvertTemperature
       original_unit = "Kelvin"
       converted_unit = "Fahrenheit"
     end
-    # original_temperature is for stacked unit conversions (ex: k to f)
-    # original_temperature = @original_temperature #why doesn't this work?
     converted_temperature = @conversion_to_make
     # change to sprintf format
     "#{original_temperature} degrees #{original_unit} | " \
@@ -79,34 +77,28 @@ class ConvertTemperature
   end
 
   def celcius_to_fahrenheit(value)
-    # @original_temperature = value # for stacked unit conversions (ex: k to f)
     value * 5 / 9.0 + 32
   end
 
   def fahrenheit_to_celcius(value)
-    @original_temperature = value # for stacked unit conversions (ex: k to f)
     (value - 32) * (5 / 9.0)
   end
 
   def celcius_to_kelvin(value)
-    @original_temperature = value # for stacked unit conversions (ex: k to f)
     value + 273.15
   end
 
   def fahrenheit_to_kelvin(value)
-    @original_temperature = value #why won't this value go to the sort method?
-    @value = fahrenheit_to_celcius(@value)
+    @value = fahrenheit_to_celcius(value)
     celcius_to_kelvin(@value)
   end
 
   def kelvin_to_celcius(value)
-    @original_temperature = value # for stacked unit conversions (ex: k to f)
     value - 273.15
   end
 
   def kelvin_to_fahrenheit(value)
-    @original_temperature = value # for stacked unit conversions (ex: k to f)
-    @value = kelvin_to_celcius(@value)
+    @value = kelvin_to_celcius(value)
     celcius_to_fahrenheit(@value)
   end
 end
