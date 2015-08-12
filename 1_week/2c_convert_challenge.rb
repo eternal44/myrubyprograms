@@ -43,6 +43,7 @@ class ConvertTemperature
   end
 
   def sort
+    original_temperature = @value
     case @conversion_to_make
     when 1
       @conversion_to_make = celcius_to_fahrenheit(@value)
@@ -70,7 +71,7 @@ class ConvertTemperature
       converted_unit = "Fahrenheit"
     end
     # original_temperature is for stacked unit conversions (ex: k to f)
-    original_temperature = @original_temperature #why doesn't this work?
+    # original_temperature = @original_temperature #why doesn't this work?
     converted_temperature = @conversion_to_make
     # change to sprintf format
     "#{original_temperature} degrees #{original_unit} | " \
@@ -78,7 +79,7 @@ class ConvertTemperature
   end
 
   def celcius_to_fahrenheit(value)
-    @original_temperature = value # for stacked unit conversions (ex: k to f)
+    # @original_temperature = value # for stacked unit conversions (ex: k to f)
     value * 5 / 9.0 + 32
   end
 

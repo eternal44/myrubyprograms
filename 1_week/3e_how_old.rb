@@ -1,6 +1,8 @@
 # doctest: age_calcuator returns decimal age in years
 # >> age_in_years(9.79e8).round(2)
 # => 31.04
+
+# This method converts your age in seconds and converts them to years.
 def age_in_years(age_in_seconds)
   seconds = 60.0
   minutes = 60.0

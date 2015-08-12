@@ -16,6 +16,7 @@
 # >> to_celcius(98).round(4)
 # => 36.6667
 
+# This method converts Celcius to Fahrenheit.
 def convert(_F_temp)
   _Celcius = (_F_temp - 32.0) * 5 / 9
 end

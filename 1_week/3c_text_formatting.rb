@@ -1,3 +1,4 @@
+# This method generates a multiplication table.
 class Table
   def generate_table(x, y='y', z='y')
     # set up parameters for table
@@ -46,10 +47,6 @@ end
 #########
 # TEST  #
 #########
-
-
-
-
 
 #########
 # INPUT #

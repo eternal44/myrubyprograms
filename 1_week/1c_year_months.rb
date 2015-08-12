@@ -6,6 +6,8 @@
 # >> seconds_to_years_and_months(300_000_000)
 # => "I'm 9 years and 6 months old."
 
+
+# This method takes your age in seconds and converts it to years & months
 def seconds_to_years_and_months(age_in_seconds)
   minutes = 60.0
   hours = 60.0
