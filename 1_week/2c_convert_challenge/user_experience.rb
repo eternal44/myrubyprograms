@@ -34,6 +34,6 @@ display = ConvertTemperature.new(unit, value)
 puts display.show_conversion
 puts ""
 puts "** DIRECTIONS:  Press enter for main menu or type 'exit' to quit."
-exit = gets.chomp
+quit = gets.chomp
 
-end while exit != "exit"
+end while quit != "exit"
