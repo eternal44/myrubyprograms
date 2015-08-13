@@ -1,5 +1,5 @@
 # Description:  temperature conversion script
-
+puts "Loading temperature_conversions"
 require_relative "temperature_conversions"
 
 class ConvertTemperature
