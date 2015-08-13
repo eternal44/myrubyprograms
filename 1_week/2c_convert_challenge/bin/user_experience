@@ -1,4 +1,5 @@
-require_relative "2c_convert_challenge"
+#!/usr/bin/env ruby
+require "2c_convert_challenge"
 begin
 puts ""
 puts "This program will convert temperature units."

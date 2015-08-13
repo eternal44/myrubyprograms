@@ -6,8 +6,14 @@ console.  All modules required for this app are located within this
 directory.
 
 ### Developer notes
-ruby -l
 
+
+    doctest: setup
+
+Ensure that the library is available
+
+    >> $: << './lib'
+    >> require '2c_convert_challenge'
     doctest: c to f should give correct results
     >> a = ConvertTemperature.new(1, 0)
     >> a.show_conversion

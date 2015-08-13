@@ -1,11 +1,15 @@
-require_relative "2c_convert_challenge"
+# $LOAD_PATH << "./lib"
+require "2c_convert_challenge"
 
-# doctest: c to f should give correct results
-# >> a = ConvertTemperature.new(1, 0)
+# doctest: c to f for -40 should give -40
+#          Integration test
+# >> a = ConvertTemperature.new(1, -40)
 # >> a.show_conversion
-# => "0.00 degrees Celcius | 32.00 degrees Fahrenheit"
-# >> a.celcius_to_fahrenheit(0)
-# => 32.0
+# => "-40.00 degrees Celcius | -40.00 degrees Fahrenheit"
+# doctest: c to f for -40 should give -40
+#          Unit test
+# >> a.celcius_to_fahrenheit(-40)
+# => -40.0
 # doctest: c to k should give correct result
 # >> c = ConvertTemperature.new(2, 0)
 # >> c.show_conversion
