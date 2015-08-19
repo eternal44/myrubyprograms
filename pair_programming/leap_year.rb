@@ -26,7 +26,8 @@ end
 # >> minutes_in_year[2000]
 # => 527040
 
-minutes_in_year = ->(year) { 60 * 24 * (query_leap_year.call(year) ? 366 : 365) }
+minutes_in_year = ->(year) { 60 * 24 * 
+                    (query_leap_year.call(year) ? 366 : 365) }
 
 if __FILE__ == $PROGRAM_NAME
   [2005, 2008, 1900, 2000].each do |year|
