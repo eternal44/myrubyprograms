@@ -11,7 +11,7 @@ class Table
     length = table.lines[-1].size
     border = decoration.to_s * (length) + "\n"
 
-    result << title unless set_title? title
+    result << title unless decorate? title
     result << border unless decorate? decoration
     result << table
     result << border unless decorate? decoration
@@ -24,12 +24,6 @@ class Table
   def decorate?(decoration)
     [ :nil? , :empty?, :blank?].any? do |method_name|
       decoration.respond_to?(method_name) && decoration.send(method_name)
-    end
-  end
-
-  def set_title?(title)
-    [ :nil? , :empty?, :blank?].any? do |method_name|
-      title.respond_to?(method_name) && title.send(method_name)
     end
   end
 
