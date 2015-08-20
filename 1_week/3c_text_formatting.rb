@@ -7,21 +7,11 @@ class Table
     decoration = ''
   )
     result = ""
-    table = ""
     border = 0
     length = ""
-
-    # multiplication_table
-    1.upto(table_size) do |i|
-      row = ""
-      1.upto(table_size) do |j|
-        row << build_row(table_size, [i, j])
-      end
-
-      table << row << "\n"
-      length = row.size
-      border = decoration.to_s * (length + 1) + "\n"
-    end
+    table = multiplication_table(table_size)
+    length = table.lines[-1].size - 1
+    border = decoration.to_s * (length + 1) + "\n"
 
     # table layout options
     if title && length > 16
@@ -41,6 +31,19 @@ class Table
   end
 
   private
+
+  def multiplication_table(table_size)
+    table = ''
+    1.upto(table_size) do |i|
+      row = ""
+      1.upto(table_size) do |j|
+        row << build_row(table_size, [i, j])
+      end
+      table << row << "\n"
+    end
+    table
+  end
+
   def build_row(table_size, multiplands)
     i, j = multiplands
     # i = numbers[0]
