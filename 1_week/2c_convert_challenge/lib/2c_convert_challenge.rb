@@ -1,6 +1,6 @@
 # Description:  temperature conversion script
-puts "Loading temperature_conversions"
-require "temperature_conversions"
+# puts "Loading temperature_conversions"
+require_relative "temperature_conversions"
 
 class ConvertTemperature
   include TemperatureConversions

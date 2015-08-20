@@ -1,6 +1,6 @@
 module TemperatureConversions
   def celcius_to_fahrenheit(value)
-    value * 5 / 9.0 + 32
+    value * 9.0 / 5 + 32
   end
 
   def fahrenheit_to_celcius(value)

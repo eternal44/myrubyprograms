@@ -1,5 +1,4 @@
-# $LOAD_PATH << "./lib"
-require "2c_convert_challenge"
+require_relative "../lib/2c_convert_challenge"
 
 # doctest: c to f for -40 should give -40
 #          Integration test
