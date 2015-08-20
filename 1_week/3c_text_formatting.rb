@@ -43,7 +43,7 @@ class Table
     i, j = multiplands
     # i = numbers[0]
     # j = numbers[1]
-    ' ' << spacing(product(i, j)[:length], spaces(table_size)) <<
+    ' ' << spacing(product(i, j)[:length], spaces(table_size) + 1) <<
     product(i, j)[:value].to_s
   end
 
@@ -86,15 +86,24 @@ if __FILE__ == $PROGRAM_NAME
 end
 ## This is a pass / fail test.  To get get graded test just load it
 ## in irb and run
-# doctest: Acceptance test & with customized decoration
-# >> standard = "+++++++\n 1 2 3\n 2 4 6\n 3 6 9\n+++++++\n"
+# doctest: Acceptance test & with no title but with decoration
+# >> standard = "++++++++++\n  1  2  3\n  2  4  6\n  3  6  9\n++++++++++\n"
 # >> Table.new().generate_table(3, "", "+") == standard
 # => true
-# doctest: Acceptance test with title and decoration
-# >> standard = "Times table to 3\n 1 2 3\n 2 4 6\n 3 6 9\n"
+# doctest: Acceptance test with title and no decoration
+# >> standard = "Times table to 3\n  1  2  3\n  2  4  6\n  3  6  9\n"
 # >> Table.new().generate_table(3) == standard
 # => true
-# doctest: Acceptance test without decoration
-# >> standard = " 1 2 3\n 2 4 6\n 3 6 9\n"
+# doctest: Acceptance test with no decoration & no title
+# >> standard = "  1  2  3\n  2  4  6\n  3  6  9\n"
 # >> Table.new().generate_table(3, '', '') == standard
+# => true
+# doctest: Acceptance test with larger multiplands
+# >> standard = "  1  2  3  4\n  2  4  6  8\n  3  6  9 12\n  4  8 12 16\n"
+# >> Table.new().generate_table(4, '', '') == standard
+# => true
+# doctest: Acceptance test & with title and decoration
+# >> standard = "++++++++++\n  1  2  3\n  2  4  6\n  3  6  9\n++++++++++\n"
+# >> Table.new().generate_table(3, "", "+") == standard
+# >> puts Table.new().generate_table(3, "", "+").inspect
 # => true
