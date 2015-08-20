@@ -3,15 +3,16 @@
 class Table
   def generate_table(
     table_size,
-    title = "Times table to #{table_size}\n",
+    title = '',
     decoration = ''
   )
     result = ''
+    heading = "Times table to #{table_size}\n"
     table = multiplication_table(table_size)
     length = table.lines[-1].size
     border = decoration.to_s * (length) + "\n"
 
-    result << title unless decorate? title
+    result << heading if title == "title"
     result << border unless decorate? decoration
     result << table
     result << border unless decorate? decoration
@@ -92,7 +93,7 @@ end
 # => true
 # doctest: Acceptance test with title and no decoration
 # >> standard = "Times table to 3\n  1  2  3\n  2  4  6\n  3  6  9\n"
-# >> Table.new().generate_table(3) == standard
+# >> Table.new().generate_table(3, "title") == standard
 # => true
 # doctest: Acceptance test with no decoration & no title
 # >> standard = "  1  2  3\n  2  4  6\n  3  6  9\n"
@@ -103,7 +104,6 @@ end
 # >> Table.new().generate_table(4, '', '') == standard
 # => true
 # doctest: Acceptance test & with title and decoration
-# >> standard = "++++++++++\n  1  2  3\n  2  4  6\n  3  6  9\n++++++++++\n"
-# >> Table.new().generate_table(3, "", "+") == standard
-# >> puts Table.new().generate_table(3, "", "+").inspect
+# >> standard ="Times table to 3\n++++++++++\n  1  2  3\n  2  4  6\n  3  6  9\n++++++++++\n"
+# >> Table.new().generate_table(3, "title", "+") == standard
 # => true
