@@ -3,34 +3,26 @@
 class Table
   def generate_table(
     table_size,
-    title = "Times table to #{table_size}",
+    title = "Times table to #{table_size}\n",
     decoration = ''
   )
-    result = ''
-    border = 0
-    length = ''
+    result = title
     table = multiplication_table(table_size)
-    length = table.lines[-1].size - 1
-    border = decoration.to_s * (length + 1) + "\n"
+    length = table.lines[-1].size
+    border = decoration.to_s * (length) + "\n"
 
-    # table layout options
-    if title && length > 16
-      header = ' ' * (length / 2 - 8) + title + "\n"
-      result << header
-    elsif length < 16
-      header = title + "\n"
-      result << header
-    else
-      header = "\n"
-    end
-
-    result << border unless decoration.empty?
+    result << border unless decorate? decoration
     result << table
-    result << border unless decoration.empty?
+    result << border unless decorate? decoration
     result
   end
 
   private
+  def decorate?(decoration)
+    [ :nil? , :empty?, :blank?].any? do |method_name|
+      decoration.respond_to?(method_name) && decoration.send(method_name)
+    end
+  end
 
   def multiplication_table(table_size)
     table = ''
@@ -49,7 +41,7 @@ class Table
     # i = numbers[0]
     # j = numbers[1]
     ' ' << spacing(product(i, j)[:length], spaces(table_size)) <<
-      product(i, j)[:value].to_s
+    product(i, j)[:value].to_s
   end
 
   def spaces(integer)
@@ -106,16 +98,14 @@ end
 ## This is a pass / fail test.  To get get graded test just load it
 ## in irb and run
 # doctest: Acceptance test & with customized decoration
-# >> Table.new().generate_table(3,"", "+")
-# >> standard = "\n+++++++\n 1 2 3\n 2 4 6\n 3 6 9\n+++++++\n"
-# >> Table.new().generate_table(3,"", "+") == standard
+# >> standard = "+++++++\n 1 2 3\n 2 4 6\n 3 6 9\n+++++++\n"
+# >> Table.new().generate_table(3, "", "+") == standard
 # => true
 # doctest: Acceptance test with title and decoration
 # >> standard = "Times table to 3\n 1 2 3\n 2 4 6\n 3 6 9\n"
 # >> Table.new().generate_table(3) == standard
 # => true
 # doctest: Acceptance test without decoration
-# >> standard = "\n 1 2 3\n 2 4 6\n 3 6 9\n"
+# >> standard = " 1 2 3\n 2 4 6\n 3 6 9\n"
 # >> Table.new().generate_table(3, '', '') == standard
 # => true
-#
