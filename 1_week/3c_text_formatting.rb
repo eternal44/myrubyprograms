@@ -4,24 +4,18 @@ class Table
   def generate_table(
     table_size,
     title="Times table to #{table_size}",
-    decoration = '')
+    decoration = ''
+  )
     result = ""
-    # set up parameters for table
-    arr2 = arr1 = (1..table_size).to_a
-    col_size = (arr2[-1] * arr2[-1]).to_s.size
-
     table = ""
     border = 0
     length = ""
 
-    # generating table
-    arr1.each do |y|
+    # multiplication_table
+    1.upto(table_size) do |i|
       row = ""
-      arr2.each do |z|
-        product = y * z
-        num_size = product.to_s.size
-
-        row << " " << spacing(num_size, col_size) << (y*z).to_s
+      1.upto(table_size) do |j|
+        row << build_row(table_size, [i, j])
       end
 
       table << row << "\n"
@@ -47,9 +41,24 @@ class Table
   end
 
   private
+  def build_row(table_size, multiplands)
+    i, j = multiplands
+    # i = numbers[0]
+    # j = numbers[1]
+    " " << spacing(product(i, j)[:length], spaces(table_size)) <<
+    product(i, j)[:value].to_s
+  end
+
+  def spaces(integer)
+    integer.to_s.size
+  end
+  def product(i, j)
+    { value: i * j, length: (i * j).to_s.length }
+  end
+
   def spacing(num_size, col_size)
-        num_size < col_size ?
-           " " * (col_size - num_size) : ""
+    num_size < col_size ?
+      " " * (col_size - num_size) : ""
 
   end
 end
