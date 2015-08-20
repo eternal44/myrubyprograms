@@ -6,21 +6,30 @@ class Table
     title = "Times table to #{table_size}\n",
     decoration = ''
   )
-    result = title
+    result = ''
     table = multiplication_table(table_size)
     length = table.lines[-1].size
     border = decoration.to_s * (length) + "\n"
 
+    result << title unless set_title? title
     result << border unless decorate? decoration
     result << table
     result << border unless decorate? decoration
     result
   end
 
+
   private
+
   def decorate?(decoration)
     [ :nil? , :empty?, :blank?].any? do |method_name|
       decoration.respond_to?(method_name) && decoration.send(method_name)
+    end
+  end
+
+  def set_title?(title)
+    [ :nil? , :empty?, :blank?].any? do |method_name|
+      title.respond_to?(method_name) && title.send(method_name)
     end
   end
 
@@ -59,10 +68,6 @@ end
 
 if __FILE__ == $PROGRAM_NAME
   #########
-  # TEST  #
-  #########
-
-  #########
   # INPUT #
   #########
 
@@ -72,28 +77,18 @@ if __FILE__ == $PROGRAM_NAME
   puts 'Invalid entry' unless num.is_a?(Integer)
 
   # header input
-  puts "Include Header? Enter 'y' or 'n'."
-  header = gets.chomp
-
-  if header != 'y' && header != 'n'
-    puts "Invalid entry.  Use 'y' or 'n'."
-    exit
-  end
+  puts "Include title? Enter 'y' or 'n'."
+  title = gets.chomp
 
   # border input
-  puts "Include border?  Enter 'y' or 'n'."
+  puts "Include border?  Use whatever single character you like"
   border = gets.chomp
-
-  if border != 'y' && border != 'n'
-    puts "Invalid entry.  Use 'y' or 'n'."
-    exit
-  end
 
   ##############
   # RUN SCRIPT #
   ##############
 
-  generate_table(num, header, border)
+  puts Table.new().generate_table(num, title, border)
 end
 ## This is a pass / fail test.  To get get graded test just load it
 ## in irb and run
