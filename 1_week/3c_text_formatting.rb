@@ -3,19 +3,19 @@
 class Table
   def generate_table(
     table_size,
-    title="Times table to #{table_size}",
+    title = "Times table to #{table_size}",
     decoration = ''
   )
-    result = ""
+    result = ''
     border = 0
-    length = ""
+    length = ''
     table = multiplication_table(table_size)
     length = table.lines[-1].size - 1
     border = decoration.to_s * (length + 1) + "\n"
 
     # table layout options
     if title && length > 16
-      header = " " * (length / 2 - 8) + title + "\n"
+      header = ' ' * (length / 2 - 8) + title + "\n"
       result << header
     elsif length < 16
       header = title + "\n"
@@ -35,7 +35,7 @@ class Table
   def multiplication_table(table_size)
     table = ''
     1.upto(table_size) do |i|
-      row = ""
+      row = ''
       1.upto(table_size) do |j|
         row << build_row(table_size, [i, j])
       end
@@ -48,21 +48,20 @@ class Table
     i, j = multiplands
     # i = numbers[0]
     # j = numbers[1]
-    " " << spacing(product(i, j)[:length], spaces(table_size)) <<
-    product(i, j)[:value].to_s
+    ' ' << spacing(product(i, j)[:length], spaces(table_size)) <<
+      product(i, j)[:value].to_s
   end
 
   def spaces(integer)
     integer.to_s.size
   end
+
   def product(i, j)
     { value: i * j, length: (i * j).to_s.length }
   end
 
   def spacing(num_size, col_size)
-    num_size < col_size ?
-      " " * (col_size - num_size) : ""
-
+    num_size < col_size ? ' ' * (col_size - num_size) : ''
   end
 end
 
@@ -76,15 +75,15 @@ if __FILE__ == $PROGRAM_NAME
   #########
 
   # number input
-  puts "Enter a number you want to generate a times table for"
+  puts 'Enter a number you want to generate a times table for'
   num = gets.to_i
-  puts "Invalid entry" unless num.is_a?(Integer)
+  puts 'Invalid entry' unless num.is_a?(Integer)
 
   # header input
   puts "Include Header? Enter 'y' or 'n'."
   header = gets.chomp
 
-  if header != "y" && header != "n"
+  if header != 'y' && header != 'n'
     puts "Invalid entry.  Use 'y' or 'n'."
     exit
   end
@@ -93,7 +92,7 @@ if __FILE__ == $PROGRAM_NAME
   puts "Include border?  Enter 'y' or 'n'."
   border = gets.chomp
 
-  if border != "y" && border != "n"
+  if border != 'y' && border != 'n'
     puts "Invalid entry.  Use 'y' or 'n'."
     exit
   end
