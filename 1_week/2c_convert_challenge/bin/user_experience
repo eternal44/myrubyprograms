@@ -11,6 +11,7 @@ puts "3) Fahrenheit to Celcius"
 puts "4) Fahrenheit to Kelvin"
 puts "5) Kelvin to Celcius"
 puts "6) Kelvin to Fahrenheit"
+# added more units.  Add the options later if you want.
 puts ""
 
 unit = gets.chomp.to_i
@@ -29,7 +30,6 @@ begin
     puts "Invalid value.  Try again"
   end
 end while check_range != true
-
 
 display = ConvertTemperature.new(unit, value)
 puts display.show_conversion

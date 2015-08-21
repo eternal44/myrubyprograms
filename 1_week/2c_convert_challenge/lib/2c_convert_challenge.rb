@@ -39,7 +39,17 @@ class ConvertTemperature
       @conversion_to_make = kelvin_to_fahrenheit(@value)
       original_unit = "Kelvin"
       converted_unit = "Fahrenheit"
+    when 7
+      @conversion_to_make = kelvin_to_rankine(@value)
+      original_unit = "Kelvin"
+      converted_unit = "Rankine"
+    when 8
+      @conversion_to_make = rankine_to_kelvin(@value)
+      original_unit = "Kelvin"
+      converted_unit = "Rankine"
     end
+    # added more conversions in temperature_conversion.rb.
+    # add interface options later
 
     # return output to user
     converted_temperature = @conversion_to_make
