@@ -1,0 +1,9 @@
+x = size of table
+y = 
+z = 
+
+
+def generate_table(size, title, decoration)
+result = construct_title
+decorate(construct_table, result, decoration)
+end

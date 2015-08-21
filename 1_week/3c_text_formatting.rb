@@ -1,82 +1,109 @@
 # This method generates a multiplication table.
+
 class Table
-  def generate_table(x, y='y', z='y')
-    # set up parameters for table
-    arr2 = arr1 = (1..x).to_a 
-    col_size = (arr2[-1] * arr2[-1]).to_s.size
+  def generate_table(
+    table_size,
+    title = '',
+    decoration = ''
+  )
+    result = ''
+    heading = "Times table to #{table_size}\n"
+    table = multiplication_table(table_size)
+    length = table.lines[-1].size
+    border = decoration.to_s * (length) + "\n"
 
-    table = ""
-    border = 0
-    length = ""
+    result << heading if title == "title"
+    result << border unless decorate? decoration
+    result << table
+    result << border unless decorate? decoration
+    result
+  end
 
-    # generating table
-    arr1.each do |y|
-      row = ""
-      arr2.each do |z|
-        product = y * z
-        num_size = product.to_s.size
 
-        if num_size < col_size
-          spacing = " " * (col_size - num_size) 
-        else
-          spacing = ""
-        end
-        row << " " << spacing << (y*z).to_s
+  private
+
+  def decorate?(decoration)
+    [ :nil? , :empty?, :blank?].any? do |method_name|
+      decoration.respond_to?(method_name) && decoration.send(method_name)
+    end
+  end
+
+  def multiplication_table(table_size)
+    table = ''
+    1.upto(table_size) do |i|
+      row = ''
+      1.upto(table_size) do |j|
+        row << build_row(table_size, [i, j])
       end
       table << row << "\n"
-      length = row.size
-      border = " " + "=" * length
     end
+    table
+  end
 
-    # table layout options
-    if y == "y" && length > 16 
-      header = " " * (length / 2 - 8) + " Times Table to #{x}"
-      puts header
-    elsif length < 16
-      header = " Times Table to #{x}"
-      puts header
-    else
-      header = ""
-    end
+  def build_row(table_size, multiplands)
+    i, j = multiplands
+    # i = numbers[0]
+    # j = numbers[1]
+    ' ' << spacing(product(i, j)[:length], spaces(table_size) + 1) <<
+    product(i, j)[:value].to_s
+  end
 
-    puts border if z == "y"
-    puts table
+  def spaces(integer)
+    integer.to_s.size
+  end
+
+  def product(i, j)
+    { value: i * j, length: (i * j).to_s.length }
+  end
+
+  def spacing(num_size, col_size)
+    num_size < col_size ? ' ' * (col_size - num_size) : ''
   end
 end
 
-#########
-# TEST  #
-#########
+if __FILE__ == $PROGRAM_NAME
+  #########
+  # INPUT #
+  #########
 
-#########
-# INPUT #
-#########
+  # number input
+  puts 'Enter a number you want to generate a times table for'
+  num = gets.to_i
+  puts 'Invalid entry' unless num.is_a?(Integer)
 
-# number input
-puts "Enter a number you want to generate a times table for"
-num = gets.to_i
-puts "Invalid entry" unless num.is_a?(Integer) 
+  # header input
+  puts "Include title? Enter 'y' or 'n'."
+  title = gets.chomp
 
-# header input
-puts "Include Header? Enter 'y' or 'n'."
-header = gets.chomp
+  # border input
+  puts "Include border?  Use whatever single character you like"
+  border = gets.chomp
 
-if header != "y" && header != "n"
-  puts "Invalid entry.  Use 'y' or 'n'." 
-  exit
+  ##############
+  # RUN SCRIPT #
+  ##############
+
+  puts Table.new().generate_table(num, title, border)
 end
-
-# border input
-puts "Include border?  Enter 'y' or 'n'."
-border = gets.chomp
-
-if border != "y" && border != "n"
-  puts "Invalid entry.  Use 'y' or 'n'." 
-  exit
-end
-
-##############
-# RUN SCRIPT #
-##############
-
-generate_table(num, header, border)
+## This is a pass / fail test.  To get get graded test just load it
+## in irb and run
+# doctest: Acceptance test & with no title but with decoration
+# >> standard = "++++++++++\n  1  2  3\n  2  4  6\n  3  6  9\n++++++++++\n"
+# >> Table.new().generate_table(3, "", "+") == standard
+# => true
+# doctest: Acceptance test with title and no decoration
+# >> standard = "Times table to 3\n  1  2  3\n  2  4  6\n  3  6  9\n"
+# >> Table.new().generate_table(3, "title") == standard
+# => true
+# doctest: Acceptance test with no decoration & no title
+# >> standard = "  1  2  3\n  2  4  6\n  3  6  9\n"
+# >> Table.new().generate_table(3, '', '') == standard
+# => true
+# doctest: Acceptance test with larger multiplands
+# >> standard = "  1  2  3  4\n  2  4  6  8\n  3  6  9 12\n  4  8 12 16\n"
+# >> Table.new().generate_table(4, '', '') == standard
+# => true
+# doctest: Acceptance test & with title and decoration
+# >> standard ="Times table to 3\n++++++++++\n  1  2  3\n  2  4  6\n  3  6  9\n++++++++++\n"
+# >> Table.new().generate_table(3, "title", "+") == standard
+# => true
