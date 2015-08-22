@@ -3,8 +3,9 @@
 class ListGenerator
   def column_alignment(lines)
     lines.map.with_index(1) do |output, line_number|
-      "Line #{number_spacing(lines, line_number)}#{line_number}:"\
-      "#{line_spacing(output, lines)}#{output}"
+      "Line #{number_spacing(lines, line_number)}#{line_number}:"\ # rewrite
+      "#{line_spacing(output, lines)}#{output}"                    # rewrite
+
     end
   end
 
