@@ -14,7 +14,7 @@ puts "6) Kelvin to Fahrenheit"
 # added more units.  Add the options later if you want.
 puts ""
 
-unit = gets.chomp.to_i
+unit = gets.to_i
 puts ""
 
 puts "Next, enter the value in degrees you wish to convert"

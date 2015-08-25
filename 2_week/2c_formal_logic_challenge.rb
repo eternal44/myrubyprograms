@@ -7,7 +7,7 @@
 
 # no "if" statement
 def ternary(statement, true_result, false_result)
-  (true && statement) && true_result || false_result
+  statement && true_result || false_result
 end
 
 # "if" statement
