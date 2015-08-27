@@ -1,10 +1,14 @@
+class Try
 def method
   a = 50
   puts a
+  p self.inspect
+end
 end
 
 a = 10
-method
+Try.new.method
+  puts self
 puts a
 
 # This displays like so:

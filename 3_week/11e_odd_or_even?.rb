@@ -1,8 +1,7 @@
 def even_or_odd(array)
   array.each do |number|
-    even = number.even? ? 'even' : nil
-    odd = number.odd? ? 'odd' : nil
-    puts "#{number} is #{even || odd}"
+    output = number.even? ? 'even' : 'odd'
+    puts "#{number} is #{output}"
   end
 end
 
