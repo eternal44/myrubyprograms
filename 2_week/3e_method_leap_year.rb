@@ -14,13 +14,13 @@
 # >> query_leap_year?( 1900 )
 # => false
 
-# query_leap_year = ->(year) do
-#   year % 400 == 0 || year % 100 != 0 && year % 4 == 0
-# end
-
-def query_leap_year?(year)
+query_leap_year = ->(year) do
   year % 400 == 0 || year % 100 != 0 && year % 4 == 0
 end
+
+# def query_leap_year?(year)
+#   year % 400 == 0 || year % 100 != 0 && year % 4 == 0
+# end
 
 # doctest: minutes in a normal year
 # >> year_in_minutes?(2001)
@@ -29,13 +29,13 @@ end
 # >> year_in_minutes?(2000)
 # => 527040
 
-# year_in_minutes = ->(year) do
-#   60 * 24 * (query_leap_year.call(year) ? 366 : 365)
-# end
-
-def year_in_minutes?(year)
-  60 * 24 * (query_leap_year?(year) ? 366 : 365)
+year_in_minutes = ->(year) do
+  60 * 24 * (query_leap_year.call(year) ? 366 : 365)
 end
+
+# def year_in_minutes?(year)
+#   60 * 24 * (query_leap_year?(year) ? 366 : 365)
+# end
 
 
 if __FILE__ == $PROGRAM_NAME
