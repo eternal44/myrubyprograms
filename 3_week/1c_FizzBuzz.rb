@@ -27,11 +27,11 @@
 #                argument) by
 
 def fizz_buzz(num, **rules)
-    result = ""
-    rules.each_value do |v|
-      result << "#{rules.key(v).to_s.capitalize}" if num % v == 0
-    end
-    result.empty? ? num.to_s : result
+  result = ""
+  rules.each_value do |v|
+    result << "#{rules.key(v).to_s.capitalize}" if num % v == 0
+  end
+  result.empty? ? num.to_s : result
 end
 
 if __FILE__ == $PROGRAM_NAME
@@ -39,6 +39,5 @@ if __FILE__ == $PROGRAM_NAME
     puts fizz_buzz(num, boogy: 4, negy: -7)
   end
 end
-__END__
 
-fizz_buzz(1 fizz: 3, buzz: 5, **option_rules )
+# fizz_buzz(1 fizz: 3, buzz: 5, **option_rules )
