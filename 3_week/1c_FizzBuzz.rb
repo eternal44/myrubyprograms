@@ -28,8 +28,8 @@
 
 def fizz_buzz(num, **rules)
   result = ""
-  rules.each_value do |v|
-    result << "#{rules.key(v).to_s.capitalize}" if num % v == 0
+  rules.each_key do |k|
+    result << "#{k.to_s.capitalize}" if num % rules.fetch(k) == 0
   end
   result.empty? ? num.to_s : result
 end
