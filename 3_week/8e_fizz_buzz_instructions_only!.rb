@@ -9,8 +9,8 @@
 # => "FizzBuzz"
 #
 def fizz_buzz(number)
-  fizz = number % 3 == 0 ? 'Fizz' : nil
-  buzz = number % 5 == 0 ? 'Buzz' : nil
+  fizz = number % 3 == 0 ? 'Fizz' : ''
+  buzz = number % 5 == 0 ? 'Buzz' : ''
   "#{fizz}" "#{buzz}" || number.to_s
 end
 
