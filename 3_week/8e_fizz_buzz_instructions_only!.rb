@@ -1,12 +1,22 @@
-def fizz_buzz(start, finish)
-  (start..finish).reduce("") do |b, number|
-    fizz = number % 3 == 0 ? 'fizz' : nil
-    buzz = number % 5 == 0 ? 'buzz' : nil
-    b + "#{fizz || buzz ? "#{fizz}#{buzz}" : number.to_s}" + "\n"
-  end
+# doctest: get 'Fizz' for 3
+# >> fizz_buzz(3)
+# => "Fizz"
+# doctest: get 'Buzz' for 5
+# >> fizz_buzz(5)
+# => "Buzz"
+# doctest: get 'FizzBuzz' for 15
+# >> fizz_buzz(15)
+# => "FizzBuzz"
+#
+def fizz_buzz(number)
+  fizz = number % 3 == 0 ? 'Fizz' : nil
+  buzz = number % 5 == 0 ? 'Buzz' : nil
+  "#{fizz}" "#{buzz}" || number.to_s
 end
 
 if __FILE__ == $PROGRAM_NAME
-  puts fizz_buzz(-10, 10)
+  (-10..10).each do |num|
+    puts fizz_buzz(num)
+  end
 end
 
