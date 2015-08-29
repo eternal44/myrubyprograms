@@ -15,7 +15,7 @@ questions = ['What is your name', 'What is your age',
              'What is your favorite color']
 
 questions.each do |q|
-  answers << prompt(q)
+  answers << prompt(q, symbol: '--')
 end
 puts answers
 end

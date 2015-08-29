@@ -7,11 +7,15 @@
 # doctest: get 'FizzBuzz' for 15
 # >> fizz_buzz(15)
 # => "FizzBuzz"
+# doctest: get number if 4
+# >> fizz_buzz(4)
+# => "4"
 #
 def fizz_buzz(number)
-  fizz = number % 3 == 0 ? 'Fizz' : ''
-  buzz = number % 5 == 0 ? 'Buzz' : ''
-  "#{fizz}" "#{buzz}" || number.to_s
+  result = ''
+  result << 'Fizz' if number % 3 == 0
+  result << 'Buzz' if number % 5 == 0
+  result.empty? ? number.to_s : result
 end
 
 if __FILE__ == $PROGRAM_NAME
