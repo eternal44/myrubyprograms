@@ -1,0 +1,1 @@
+This line was originally in file 'A.txt'
