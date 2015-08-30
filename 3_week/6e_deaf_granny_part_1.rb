@@ -1,8 +1,10 @@
+gem 'prompt_jyoun44', '0.1.0'
+require 'prompt'
 if __FILE__ == $0 # the same as $PROGRAM_NAME
   puts "Talk to Granny.  She's deaf."
 
   begin
-    answer = gets.chomp
+    answer = prompt("Say something, Sonny! ").chomp
 
     answer != answer.upcase ?
       puts('HUH?! SPEAK UP, SONNY') :
